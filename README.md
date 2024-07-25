@@ -36,7 +36,8 @@ my-chat-app/
 │ ├── config/  
 │ │ └── db.js
 │ ├── .env  
-│ ├── server.js  
+│ ├── index.js  
+│ ├── app.js  
 │ └── package.json  
 │
 ├── client/  
