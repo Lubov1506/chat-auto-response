@@ -21,7 +21,7 @@ const chatSchema = new Schema(
       type: String,
       required: true,
     },
-    message: [messageSchema],
+    messages: [messageSchema],
   },
   {
     versionKey: false,
