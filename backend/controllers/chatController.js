@@ -102,7 +102,7 @@ const searchChats = async (req, res) => {
   const { query } = req.query;
 
   if (!query) {
-    throw HttpError(400, "At least one search parameter is required");
+    throw HttpError(400, "Search parameter is required");
   }
 
   const chats = await chatServices.searchChats(query);
