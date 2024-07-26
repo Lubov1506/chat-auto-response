@@ -1,0 +1,19 @@
+@import url("./styles/reset.css");
+
+:root {
+  --color_blue: rgb(2, 179, 179);
+  --dark-bgc: rgb(215, 215, 215);
+  --light-bgc: rgb(233, 233, 233);
+  --border-color: rgba(2, 2, 2, 0.569);
+  --transition-pattern: 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.blue {
+  color: var(--color_blue);
+}
+
+input {
+  outline: none;
+}
+input:focus {
+  border-bottom: 1px solid var(--border-color);
+}
