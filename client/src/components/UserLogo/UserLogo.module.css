@@ -1,0 +1,17 @@
+.img_wrapper {
+  position: relative;
+  img {
+    border-radius: 50%;
+  }
+  &::after {
+    content: "";
+    background-image: url("/src/assets/tick.png");
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

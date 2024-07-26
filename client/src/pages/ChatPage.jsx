@@ -1,21 +1,14 @@
 import { Outlet } from "react-router-dom";
 import ChatList from "../components/ChatList/ChatList";
-import SearchBar from "../components/SearchBar/SearchBar";
 import s from "./ChatPage.module.css";
-import userImage from "../assets/user.png";
+
+import AsideHeader from "../components/AsideHeader/AsideHeader";
+
 const ChatPage = () => {
   return (
     <div className={s.chat_page}>
       <aside>
-        <header>
-          <div>
-            <div className={s.img_wrapper}>
-              <img src={userImage} alt="User" width="30" height="30" />
-            </div>
-            <button>Log in</button>
-          </div>
-          <SearchBar />
-        </header>
+        <AsideHeader />
         <section>
           <p>
             <span className="blue">Chats</span>

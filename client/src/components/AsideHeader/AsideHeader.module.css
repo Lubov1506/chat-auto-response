@@ -1,0 +1,21 @@
+.header {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--dark-bgc);
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background-color: var(--light-bgc);
+      padding: 5px 10px;
+      border-radius: 15px;
+      color: var(--color_blue);
+      border: 1px solid grey;
+    }
+  }
+}
