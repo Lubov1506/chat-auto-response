@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { fetchChats } from "../../api/chatApi";
 import { useHttp } from "../../hooks/useHttp";
 import ChatItem from "../ChatItem/ChatItem";

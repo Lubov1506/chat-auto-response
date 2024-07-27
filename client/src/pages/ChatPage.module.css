@@ -2,13 +2,16 @@
   display: flex;
 
   aside {
+    min-width: 300px;
     width: 30vw;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
   main {
+    min-width: 450px;
     width: 70vw;
     height: 100vh;
     padding: 10px;

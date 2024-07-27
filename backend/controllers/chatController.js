@@ -12,14 +12,13 @@ const getAllChats = async (req, res) => {
 };
 
 const getOneUserChat = async (req, res) => {
-  const { id } = req.params;
-  console.log("search", req.query);
-  const chat = await chatServices.findOneUserChat(id);
+  const { chatId: id } = req.params;
+  const chat = await chatServices.findOneUserChat({ _id: id });
   if (!chat) {
     throw HttpError(404, `Chat by id ${id} not found`);
   }
   res.status(200).json({
-    message: "Chats got successfully _____",
+    message: "Chats got successfully",
     chat,
   });
 };
