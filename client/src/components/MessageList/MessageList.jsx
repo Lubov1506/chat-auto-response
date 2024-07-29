@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import MessageItem from "../MessageItem/MessageItem";
 import s from "./MessageList.module.css";
+
 const MessageList = ({ messages }) => {
   const listRef = useRef(null);
 

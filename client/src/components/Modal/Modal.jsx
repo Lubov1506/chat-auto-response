@@ -1,38 +1,39 @@
-import { useEffect } from 'react'
-import s from './Modal.module.css'
-const Modal = ({ children, title = 'Default modal', onClose }) => {
-	const handleBackDropClick = e => {
-		if (e.target === e.currentTarget) {
-			onClose()
-		}
-	}
+import { useEffect } from "react";
+import s from "./Modal.module.css";
+import { IoClose } from "react-icons/io5";
 
-	useEffect(() => {
-		const handleKeyDown = e => {
-			if (e.key === 'Escape') {
-				onClose()
-			}
-		}
-		document.addEventListener('keydown', handleKeyDown)
+const Modal = ({ children, title = "Default modal", onClose }) => {
+  const handleBackDropClick = e => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
-		return () => {
-			document.removeEventListener('keydown', handleKeyDown)
-		}
-	}, [onClose])
-	return (
-		<div className={s.wrapper} onClick={handleBackDropClick}>
-			<div className={s.content}>
-				<>
-					<h1>{title}</h1>
-					<hr />
-				</>
-				<button className={s.closeBtn} onClick={onClose}>
-					×
-				</button>
-				{children}
-			</div>
-		</div>
-	)
-}
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
 
-export default Modal
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+  return (
+    <div className={s.wrapper} onClick={handleBackDropClick}>
+      <div className={s.content}>
+        <>
+          <h1>{title}</h1>
+        </>
+        <button className={s.closeBtn} onClick={onClose}>
+          <IoClose />
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default Modal;

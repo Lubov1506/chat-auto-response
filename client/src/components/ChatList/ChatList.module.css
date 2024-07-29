@@ -1,6 +1,8 @@
 .chat_list {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   overflow-y: auto;
+  padding: 10px 0;
 }

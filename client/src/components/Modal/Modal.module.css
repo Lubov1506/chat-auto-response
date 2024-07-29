@@ -1,28 +1,30 @@
-.wrapper{
+.wrapper {
   position: fixed;
-	inset: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
-.content{
+.content {
   position: relative;
-	background-color: white;
-	padding: 20px;
-	overflow: hidden;
-	max-width: 1000px;
-	border-radius: 5px;
+  background-color: white;
+  padding: 20px;
+  overflow: hidden;
+  max-width: 1000px;
+  border-radius: 5px;
   h1 {
     font-size: 2rem;
   }
+  z-index: 101;
 }
-.closeBtn{
+.closeBtn {
   position: absolute;
-	top: 5px;
-	right: 5px;
-	background-color: transparent;
-	border: none;
-	font-size: 20px;
-	cursor: pointer;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }

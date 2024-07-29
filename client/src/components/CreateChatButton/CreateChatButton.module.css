@@ -1,0 +1,14 @@
+.create_btn {
+  padding: 5px 10px;
+  background-color: var(--dark-msg);
+  color: var(--color-white);
+  font-weight: 500;
+  width: fit-content;
+  align-items: center;
+  align-self: center;
+  border-radius: 10px;
+  &hover,
+  &focus {
+    background-color: rgb(51, 46, 67);
+  }
+}

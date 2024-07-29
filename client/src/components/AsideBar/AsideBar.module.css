@@ -19,3 +19,11 @@
     }
   }
 }
+.chats_header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  p {
+    padding: 10px;
+  }
+}
