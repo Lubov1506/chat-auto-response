@@ -42,7 +42,7 @@ const AsideBar = () => {
             <span className="blue">Chats</span>
           </p>
           <CreateChatButton openModal={openModal}>
-            <IoCreateOutline />
+            <IoCreateOutline size={22} />
           </CreateChatButton>
         </div>
         {fetchedChats && (

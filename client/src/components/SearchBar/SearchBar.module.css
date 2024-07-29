@@ -18,7 +18,8 @@
   outline: none;
   transition: border-color var(--transition-pattern);
 
+  &:hover,
   &:focus {
-    border-color: rgba(128, 128, 128, 1);
+    border-color: var(--dark-msg);
   }
 }

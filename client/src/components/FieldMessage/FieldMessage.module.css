@@ -17,7 +17,7 @@
 
       &:hover,
       &:focus {
-        border-color: var(--border-color);
+        border-color: var(--dark-msg);
       }
     }
     button {
@@ -33,7 +33,7 @@
       transition: color var(--transition-pattern);
       &:hover,
       &:focus {
-        color: var(--border-color);
+        color: var(--dark-msg);
       }
     }
   }
