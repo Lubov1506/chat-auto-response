@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHttp } from "../../hooks/useHttp";
 import ChatList from "../ChatList/ChatList";
 import { fetchChats, searchChats } from "../../api/chatApi";
@@ -7,9 +7,29 @@ import UserLogo from "../UserLogo/UserLogo";
 import SearchBar from "../SearchBar/SearchBar";
 import CreateChatButton from "../CreateChatButton/CreateChatButton";
 import { IoCreateOutline } from "react-icons/io5";
+import { io } from "socket.io-client";
+
 const AsideBar = () => {
   const [fetchedChats, setChats] = useHttp(fetchChats);
   const [isOpen, setIsOpen] = useState(false);
+
+  // useEffect(() => {
+  //   const ws = io.connect("http://localhost:5000");
+  //   setSocket(ws);
+
+  //   ws.on("chat-message", data => {
+  //     setMessages(prevMessages => {
+  //       const {  message } = JSON.parse(data);
+  //       const newMessage = {
+
+  //         message,
+  //       };
+
+  //       return [...prevMessages, newMessage];
+  //     });
+  //   });
+  // }, []);
+
   const openModal = () => {
     setIsOpen(true);
   };

@@ -1,6 +1,7 @@
 import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import * as chatServices from "../services/chatServices.js";
 import HttpError from "../utils/HttpError.js";
+import io from "../socket.js";
 
 const getAllChats = async (req, res) => {
   const chats = await chatServices.findAllChats();
@@ -33,6 +34,14 @@ const createChat = async (req, res) => {
     lastName,
     messages: [],
   });
+
+  try {
+    const chats = await chatServices.findAllChats();
+    io.emit("chat-update", chats);
+  } catch (error) {
+    console.error("Error updating chats:", error);
+  }
+
   res.status(201).json({
     status: 201,
     message: "Chat created successfully",
@@ -50,6 +59,12 @@ const updateChat = async (req, res) => {
   if (!updatedChat) {
     throw HttpError(404, `Chat with id ${id} not found`);
   }
+  try {
+    const chats = await chatServices.findAllChats();
+    io.emit("chat-update", chats);
+  } catch (error) {
+    console.error("Error updating chats:", error);
+  }
   res.status(200).json({
     status: 200,
     message: "Chat updated successfully",
@@ -63,6 +78,14 @@ const deleteChat = async (req, res) => {
   if (!removedChat) {
     throw HttpError(404, `Chat with id ${id} not found`);
   }
+
+  try {
+    const chats = await chatServices.findAllChats();
+    io.emit("chat-update", chats);
+  } catch (error) {
+    console.error("Error updating chats:", error);
+  }
+
   res.status(200).json({
     ststus: 200,
     message: "Chat removed successfully",
@@ -94,6 +117,13 @@ const sendMessage = async (req, res) => {
       const autoResponse = { text: autoResponseText };
       chat.messages.push(autoResponse);
       await chatServices.saveChat(chat);
+
+      try {
+        const chats = await chatServices.findAllChats();
+        io.emit("chat-update", chats);
+      } catch (error) {
+        console.error("Error updating chats:", error);
+      }
     } catch (err) {
       console.error("Failed to fetch quote from Quotable:", err);
     }
