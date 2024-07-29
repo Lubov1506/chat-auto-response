@@ -71,11 +71,13 @@ const deleteChat = async (req, res) => {
 
 const sendMessage = async (req, res) => {
   const { text } = req.body;
-  const { id } = req.params;
+  const { chatId: id } = req.params;
+
   if (!text) {
     throw HttpError(400, "Text is required");
   }
-  const chat = await chatServices.findOneUserChat(id);
+  const chat = await chatServices.findOneUserChat({ _id: id });
+
   if (!chat) {
     throw HttpError(404, "Chat not found");
   }
@@ -85,6 +87,7 @@ const sendMessage = async (req, res) => {
 
   await chatServices.saveChat(chat);
   res.status(201).json(message);
+
   setTimeout(async () => {
     try {
       const autoResponseText = await chatServices.getQuote();

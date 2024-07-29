@@ -1,7 +1,14 @@
+import { useEffect, useRef } from "react";
 import MessageItem from "../MessageItem/MessageItem";
 import s from "./MessageList.module.css";
 const MessageList = ({ messages }) => {
-  console.log(messages);
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   return (
     <ul className={s.message_list}>
       {messages
@@ -9,6 +16,7 @@ const MessageList = ({ messages }) => {
             return <MessageItem key={item._id} message={item} />;
           })
         : null}
+      <li ref={listRef} />
     </ul>
   );
 };

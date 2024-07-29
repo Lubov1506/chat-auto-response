@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { formatDate } from "../../helpers/formatDate";
-import UserLogo from "../UserLogo/UserLogo";
+import ChatLogo from "../UserLogo/UserLogo";
 import s from "./ChatItem.module.css";
 
-const ChatItem = ({ user }) => {
-  const { _id, firstName, lastName = "Last", createdAt, messages } = user;
+const ChatItem = ({ chat }) => {
+  const { _id, firstName, lastName = "Last", createdAt, messages } = chat;
   const location = useLocation();
 
   const lastMsg = messages.length
@@ -20,7 +20,7 @@ const ChatItem = ({ user }) => {
       >
         <div className={s.left}>
           <div className={s.logo}>
-            <UserLogo />
+            <ChatLogo />
           </div>
           <div>
             <h2>

@@ -1,8 +1,8 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
 import UserLogo from "../UserLogo/UserLogo";
 import s from "./ChatWindow.module.css";
-import { getOneChat } from "../../api/chatApi";
+import { getOneChat, sendMessage } from "../../api/chatApi";
 import { useEffect } from "react";
 import FieldMessage from "../FieldMessage/FieldMessage";
 import MessageList from "../MessageList/MessageList";
@@ -10,7 +10,7 @@ import MessageList from "../MessageList/MessageList";
 const ChatWindow = () => {
   const { chatId } = useParams();
   const navigate = useNavigate();
-  const [chat, _, loading] = useHttp(getOneChat, chatId);
+  const [chat, setChat, loading] = useHttp(getOneChat, chatId);
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -23,6 +23,24 @@ const ChatWindow = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [navigate]);
+
+  const handleSendMessage = async message => {
+    try {
+      await sendMessage(chatId, message);
+      let updatedChat = await getOneChat(chatId);
+      setChat(updatedChat);
+      setTimeout(async () => {
+        try {
+          const autoResponse = await getOneChat(chatId);
+          setChat(autoResponse);
+        } catch (error) {
+          console.error("Error fetching auto response:", error);
+        }
+      }, 3000);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (!chat) return <p>No chat found</p>;
@@ -38,7 +56,7 @@ const ChatWindow = () => {
       </header>
       <main>{<MessageList messages={messages} />}</main>
       <footer>
-        <FieldMessage />
+        <FieldMessage onSendMessage={handleSendMessage} />
       </footer>
     </div>
   );

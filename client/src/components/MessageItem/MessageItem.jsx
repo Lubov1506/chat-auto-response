@@ -7,10 +7,10 @@ const MessageItem = ({ message }) => {
   const date = formatDate(createdAt, "d/MM/yyyy, h:mmaaa");
   return (
     <div className={s.message_item}>
-      <div>
+      <div className={s.logo}>
         <UserLogo status={false} />
       </div>
-      <div>
+      <div className={s.msg_text}>
         <li>{text}</li>
         <span className={s.date}>{date}</span>
       </div>

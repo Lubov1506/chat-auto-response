@@ -1,22 +1,11 @@
 import { Outlet } from "react-router-dom";
-import ChatList from "../components/ChatList/ChatList";
 import s from "./ChatPage.module.css";
-
-import AsideHeader from "../components/AsideHeader/AsideHeader";
+import AsideBar from "../components/AsideBar/AsideBar";
 
 const ChatPage = () => {
   return (
     <div className={s.chat_page}>
-      <aside>
-        <AsideHeader />
-        <section>
-          <p>
-            <span className="blue">Chats</span>
-          </p>
-          <ChatList />
-        </section>
-      </aside>
-
+      <AsideBar />
       <main>
         <Outlet />
       </main>
