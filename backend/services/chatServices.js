@@ -7,7 +7,6 @@ export const findAllChats = async () => {
   };
 };
 export const findOneUserChat = filter => {
-  console.log("filter", filter);
   return Chat.findOne(filter);
 };
 export const createChat = async data => {

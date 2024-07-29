@@ -1,2 +1,26 @@
 .chat_window {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  overflow-x: hidden;
+  header {
+    flex: 0 0 auto;
+    background-color: var(--dark-bgc);
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+footer {
+  flex: 0 0 auto;
 }

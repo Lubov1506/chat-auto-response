@@ -1,10 +1,10 @@
-.header {
+.aside_header {
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   background-color: var(--dark-bgc);
-
+  border-bottom: 1px solid var(--border-color);
   div {
     display: flex;
     justify-content: space-between;

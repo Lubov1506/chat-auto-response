@@ -1,0 +1,40 @@
+.field_message {
+  background-color: var(--dark-bgc);
+  padding: 20px;
+  label {
+    display: block;
+    position: relative;
+
+    input {
+      border: 1px solid var(--dark-bgc);
+      padding: 10px 20px;
+      width: 100%;
+      border-radius: 30px;
+      transition: border-color var(--transition-pattern);
+      &::placeholder {
+        color: var(--border-color);
+      }
+
+      &:hover,
+      &:focus {
+        border-color: var(--border-color);
+      }
+    }
+    button {
+      position: absolute;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 50%;
+      right: 2%;
+      transform: translateY(-50%);
+      color: var(--dark-bgc);
+      transition: color var(--transition-pattern);
+      &:hover,
+      &:focus {
+        color: var(--border-color);
+      }
+    }
+  }
+}
