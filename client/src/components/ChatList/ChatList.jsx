@@ -1,26 +1,25 @@
-import { useState } from "react";
 import ChatItem from "../ChatItem/ChatItem";
-import Modal from "../Modal/Modal";
 import s from "./ChatList.module.css";
-import CreateMessageButton from "../CreateChatButton/CreateChatButton";
 
-const ChatList = ({ chats, isOpen, openModal, closeModal }) => {
+const ChatList = ({ chats, onUpdate, onDelete }) => {
   return (
     <>
       <div className={s.chat_list}>
         {!!chats.length ? (
           <ul className={s.chat_list}>
             {chats.map(chat => {
-              return <ChatItem key={chat._id} chat={chat} />;
+              return (
+                <ChatItem
+                  key={chat._id}
+                  chat={chat}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
+                />
+              );
             })}
           </ul>
-        ) : (
-          <CreateMessageButton openModal={openModal}>
-            Create chat
-          </CreateMessageButton>
-        )}
+        ) : null}
       </div>
-      {isOpen && <Modal onClose={closeModal} />}
     </>
   );
 };

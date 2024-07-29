@@ -10,21 +10,32 @@
 .content {
   position: relative;
   background-color: white;
-  padding: 20px;
+  padding: 20px 35px;
   overflow: hidden;
   max-width: 1000px;
-  border-radius: 5px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   h1 {
-    font-size: 2rem;
+    font-size: 1.4rem;
+    color: var(--color_blue);
   }
   z-index: 101;
 }
 .closeBtn {
   position: absolute;
+
   top: 5px;
   right: 5px;
+  padding: 5px;
   background-color: transparent;
   border: none;
   font-size: 20px;
   cursor: pointer;
+  transition: color var(--transition-pattern);
+  .close_icon:hover,
+  .close_icon:focus {
+    color: var(--color_blue);
+  }
 }

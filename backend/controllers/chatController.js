@@ -41,11 +41,15 @@ const createChat = async (req, res) => {
 };
 
 const updateChat = async (req, res) => {
-  const { id } = req.params;
+  const { chatId: id } = req.params;
+  console.log(id);
   const { firstName, lastName } = req.body;
-  const updatedChat = await chatServices.updateChat(id, {
-    firstName,
-    lastName,
+  const updatedChat = await chatServices.updateChat({
+    _id: id,
+    data: {
+      firstName,
+      lastName,
+    },
   });
   if (!updatedChat) {
     throw HttpError(404, `Chat with id ${id} not found`);
@@ -53,7 +57,7 @@ const updateChat = async (req, res) => {
   res.status(200).json({
     status: 200,
     message: "Chat updated successfully",
-    updateChat,
+    updatedChat,
   });
 };
 

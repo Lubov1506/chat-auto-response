@@ -2,17 +2,60 @@ import { Link, useLocation } from "react-router-dom";
 import { formatDate } from "../../helpers/formatDate";
 import ChatLogo from "../UserLogo/UserLogo";
 import s from "./ChatItem.module.css";
+import Button from "../Button/Button";
+import { MdDelete, MdEdit } from "react-icons/md";
+import Modal from "../Modal/Modal";
+import CreateChatModal from "../ChatModal/ChatModal";
+import { useState } from "react";
+import { deleteChat, updateChat } from "../../api/chatApi";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
-const ChatItem = ({ chat }) => {
-  const { _id, firstName, lastName = "Last", createdAt, messages } = chat;
+const ChatItem = ({ chat, onUpdate, onDelete }) => {
+  const { _id, firstName, lastName, createdAt, messages } = chat;
   const location = useLocation();
+  // const [isEditing, setIsEditing] = useState(false);
 
+  const [isEditOpen, setEditIsOpen] = useState(false);
+  const [isDeleteOpen, setDeleteIsOpen] = useState(false);
+
+  const openEditModal = () => {
+    setEditIsOpen(true);
+  };
+  const closeEditModal = () => {
+    setEditIsOpen(false);
+  };
+  const openDeleteModal = () => {
+    setDeleteIsOpen(true);
+  };
+  const closeDeleteModal = () => {
+    setDeleteIsOpen(false);
+  };
   const lastMsg = messages.length
     ? messages[messages.length - 1].text
     : "No messages";
 
+  const handleEdit = async updatedData => {
+    try {
+      const updatedChat = await updateChat({ chatId: _id, data: updatedData });
+      console.log(updatedChat);
+      closeEditModal();
+      onUpdate(updatedChat);
+    } catch (error) {
+      console.error("Error updating chat:", error);
+    }
+  };
+  const handleDelete = async () => {
+    try {
+      await deleteChat(_id);
+      onDelete(_id);
+      closeDeleteModal();
+    } catch (error) {
+      console.error("Error deleting chat:", error);
+    }
+  };
+
   return (
-    <li>
+    <li className={s.chat_list_item}>
       <Link
         to={`/chats/${_id}`}
         state={{ from: location }}
@@ -30,7 +73,33 @@ const ChatItem = ({ chat }) => {
           </div>
         </div>
         <div className={s.date}>{formatDate(createdAt)}</div>
+        <div className={s.options}>
+          <Button onClick={openEditModal}>
+            <MdEdit size={20} />
+          </Button>
+          <Button onClick={openDeleteModal}>
+            <MdDelete size={20} />
+          </Button>
+        </div>
       </Link>
+      {isEditOpen && (
+        <Modal onClose={closeEditModal} title="Edit chat">
+          <CreateChatModal
+            onSubmit={handleEdit}
+            data={{ firstName, lastName }}
+            type="edit"
+          />
+        </Modal>
+      )}
+      {isDeleteOpen && (
+        <Modal onClose={closeDeleteModal} title="Delete ?">
+          <ConfirmModal
+            onSubmit={handleDelete}
+            data={_id}
+            onClose={closeDeleteModal}
+          />
+        </Modal>
+      )}
     </li>
   );
 };

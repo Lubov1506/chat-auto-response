@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useHttp } from "../../hooks/useHttp";
 import ChatList from "../ChatList/ChatList";
-import { fetchChats, searchChats } from "../../api/chatApi";
+import { createChat, fetchChats, searchChats } from "../../api/chatApi";
 import s from "./AsideBar.module.css";
 import UserLogo from "../UserLogo/UserLogo";
 import SearchBar from "../SearchBar/SearchBar";
-import CreateChatButton from "../CreateChatButton/CreateChatButton";
 import { IoCreateOutline } from "react-icons/io5";
+import CreateChatModal from "../ChatModal/ChatModal";
+import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
 const AsideBar = () => {
-  const [fetchedChats, setChats] = useHttp(fetchChats);
+  const [chats, setChats] = useHttp(fetchChats);
   const [isOpen, setIsOpen] = useState(false);
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -18,17 +21,35 @@ const AsideBar = () => {
   };
 
   const handleSeadch = async query => {
-    if (query.trim() === "") return;
     try {
       const searchResults = await searchChats(query);
-      console.log(searchResults);
       setChats(searchResults);
     } catch (error) {
       console.error("Error searching chats:", error);
     }
   };
+
+  const handleCreateChat = async newChatData => {
+    try {
+      const newChat = await createChat(newChatData);
+
+      setChats([...chats, newChat]);
+      closeModal();
+    } catch (error) {
+      console.error("Error creating chat:", error);
+    }
+  };
+  const handleUpdateChat = updatedChat => {
+    setChats(prevChats =>
+      prevChats.map(chat => (chat._id === updatedChat._id ? updatedChat : chat))
+    );
+  };
+
+  const handleDeleteChat = chatId => {
+    setChats(prevChats => prevChats.filter(chat => chat._id !== chatId));
+  };
   return (
-    <aside>
+    <aside className={s.aside_bar}>
       <header className={s.aside_header}>
         <div>
           <UserLogo />
@@ -41,17 +62,24 @@ const AsideBar = () => {
           <p>
             <span className="blue">Chats</span>
           </p>
-          <CreateChatButton openModal={openModal}>
+          <Button onClick={openModal}>
             <IoCreateOutline size={22} />
-          </CreateChatButton>
+          </Button>
         </div>
-        {fetchedChats && (
+        {isOpen && (
+          <Modal onClose={closeModal} title="New chat">
+            <CreateChatModal onSubmit={handleCreateChat} />
+          </Modal>
+        )}
+        {chats && (
           <ChatList
-            chats={fetchedChats}
-            isOpen={isOpen}
-            openModal={openModal}
-            closeModal={closeModal}
+            chats={chats}
+            onUpdate={handleUpdateChat}
+            onDelete={handleDeleteChat}
           />
+        )}
+        {(!chats || chats.length === 0) && (
+          <Button onClick={openModal}>Create chat</Button>
         )}
       </section>
     </aside>
