@@ -1,4 +1,3 @@
-```markdown
 # Chat Application with Auto-Response
 
 This is a chat application built with React and Vite for the frontend, and Express.js with MongoDB Atlas for the backend. The app features predefined chats, chat creation, update, deletion, sending messages with auto-response, toast notifications, and chat search.
@@ -19,46 +18,6 @@ This is a chat application built with React and Vite for the frontend, and Expre
 - **Backend**: Express.js, MongoDB (Atlas)
 - **Other**: react-toastify, Quotable API
 
-## Project Structure
-```
-
-my-chat-app/
-│
-├── server/  
-│ ├── controllers/  
-│ │ └── chatController.js
-│ ├── models/  
-│ │ └── Chat.js
-│ ├── routes/  
-│ │ └── chatRoutes.js
-│ ├── config/  
-│ │ └── db.js
-│ ├── .env  
-│ ├── index.js  
-│ ├── app.js  
-│ └── package.json  
-│
-├── client/  
-│ ├── src/  
-│ │ ├── components/  
-│ │ │ ├── ChatWindow.jsx
-│ │ │ ├── ChatList.jsx
-│ │ │ └── ...  
-│ │ ├── assets/  
-│ │ ├── services/  
-│ │ │ └── chatService.js
-│ │ ├── App.jsx  
-│ │ ├── main.jsx  
-│ │ └── index.css  
-│ ├── vite.config.js  
-│ ├── package.json  
-│ └── index.html  
-│
-├── .gitignore  
-└── README.md
-
-````
-
 ## Setup and Installation
 
 ### Prerequisites
@@ -70,10 +29,12 @@ my-chat-app/
 ### Backend Setup
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/yourusername/my-chat-app.git
    cd my-chat-app/server
-````
+
+   ```
 
 2. **Install backend dependencies**:
 
@@ -127,10 +88,6 @@ my-chat-app/
 - `DELETE /api/chats/:id` - Delete a chat by ID
 - `POST /api/chats/:id/messages` - Send a message to a chat and receive an auto-response
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgements
 
 - [React](https://reactjs.org/)
@@ -139,8 +96,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 - [Quotable API](https://github.com/lukePeavey/quotable)
 - [react-toastify](https://fkhadra.github.io/react-toastify/)
-
-```
-
-Цей README файл надає чітку структуру проекту, інструкції для налаштування та запуску, а також короткий опис функціональності та технологій, що використовуються. Якщо вам потрібно додати або змінити щось, будь ласка, дайте знати!
-```
