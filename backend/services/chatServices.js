@@ -26,7 +26,6 @@ export const getQuote = async () => {
       throw new Error("Failed to fetch quote");
     }
     const quoteData = await response.json();
-    console.log(quoteData);
     return quoteData.content;
   } catch (err) {
     console.error("Error fetching quote:", err);

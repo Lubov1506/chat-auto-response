@@ -34,10 +34,14 @@
       overflow-y: hidden;
     }
   }
-  .options {
-    display: none;
-    gap: 5px;
-    align-items: center;
-    transition: all var(--transition-pattern);
-  }
+}
+.options {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1%;
+  gap: 5px;
+  align-items: center;
+  transition: all var(--transition-pattern);
 }

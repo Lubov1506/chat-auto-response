@@ -39,7 +39,7 @@ const AsideBar = () => {
       console.error("Error creating chat:", error);
     }
   };
-  const handleUpdateChat = updatedChat => {
+  const handleUpdateChat = ({ updatedChat }) => {
     setChats(prevChats =>
       prevChats.map(chat => (chat._id === updatedChat._id ? updatedChat : chat))
     );

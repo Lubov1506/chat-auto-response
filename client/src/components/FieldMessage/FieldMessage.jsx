@@ -1,7 +1,6 @@
 import s from "./FieldMessage.module.css";
 import { IoMdSend } from "react-icons/io";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const FieldMessage = ({ onSendMessage }) => {
   const [message, setMessage] = useState("");
@@ -17,7 +16,11 @@ const FieldMessage = ({ onSendMessage }) => {
       }
     }
   };
-
+  const handleKeyDown = async e => {
+    if (e.key === "Enter") {
+      await handleSubmit(e);
+    }
+  };
   return (
     <div className={s.field_message}>
       <label>
@@ -26,6 +29,7 @@ const FieldMessage = ({ onSendMessage }) => {
           type="text"
           value={message}
           onChange={e => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button onClick={handleSubmit}>
           <IoMdSend />

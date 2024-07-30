@@ -7,7 +7,6 @@ const SearchBar = ({ onChange }) => {
 
   const handleInputSearch = async e => {
     const newQuery = e.target.value;
-    console.log(newQuery);
     setQuery(newQuery);
     onChange(newQuery);
   };

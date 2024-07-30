@@ -7,7 +7,6 @@ export const fetchChats = async () => {
   return data.chats.data;
 };
 export const getOneChat = async chatId => {
-  console.log(chatId);
   const { data } = await axios.get(`chats/${chatId}`);
   return data.chat;
 };

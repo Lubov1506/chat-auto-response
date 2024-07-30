@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatDate } from "../../helpers/formatDate";
 import ChatLogo from "../UserLogo/UserLogo";
 import s from "./ChatItem.module.css";
@@ -14,17 +14,17 @@ const ChatItem = ({ chat, onUpdate, onDelete }) => {
   const { _id, firstName, lastName, createdAt, messages } = chat;
   const location = useLocation();
   // const [isEditing, setIsEditing] = useState(false);
-
+  const navigate = useNavigate();
   const [isEditOpen, setEditIsOpen] = useState(false);
   const [isDeleteOpen, setDeleteIsOpen] = useState(false);
 
-  const openEditModal = () => {
+  const openEditModal = e => {
     setEditIsOpen(true);
   };
   const closeEditModal = () => {
     setEditIsOpen(false);
   };
-  const openDeleteModal = () => {
+  const openDeleteModal = e => {
     setDeleteIsOpen(true);
   };
   const closeDeleteModal = () => {
@@ -37,7 +37,6 @@ const ChatItem = ({ chat, onUpdate, onDelete }) => {
   const handleEdit = async updatedData => {
     try {
       const updatedChat = await updateChat({ chatId: _id, data: updatedData });
-      console.log(updatedChat);
       closeEditModal();
       onUpdate(updatedChat);
     } catch (error) {
@@ -48,6 +47,7 @@ const ChatItem = ({ chat, onUpdate, onDelete }) => {
     try {
       await deleteChat(_id);
       onDelete(_id);
+      navigate("/chats");
       closeDeleteModal();
     } catch (error) {
       console.error("Error deleting chat:", error);
@@ -73,15 +73,15 @@ const ChatItem = ({ chat, onUpdate, onDelete }) => {
           </div>
         </div>
         <div className={s.date}>{formatDate(createdAt)}</div>
-        <div className={s.options}>
-          <Button onClick={openEditModal}>
-            <MdEdit size={20} />
-          </Button>
-          <Button onClick={openDeleteModal}>
-            <MdDelete size={20} />
-          </Button>
-        </div>
       </Link>
+      <div className={s.options}>
+        <Button onClick={openEditModal}>
+          <MdEdit size={20} />
+        </Button>
+        <Button onClick={openDeleteModal}>
+          <MdDelete size={20} />
+        </Button>
+      </div>
       {isEditOpen && (
         <Modal onClose={closeEditModal} title="Edit chat">
           <CreateChatModal

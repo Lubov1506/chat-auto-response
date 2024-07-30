@@ -42,7 +42,7 @@ const createChat = async (req, res) => {
 
 const updateChat = async (req, res) => {
   const { chatId: id } = req.params;
-  console.log(id);
+
   const { firstName, lastName } = req.body;
   const updatedChat = await chatServices.updateChat({
     _id: id,
