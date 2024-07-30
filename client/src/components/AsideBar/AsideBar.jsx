@@ -9,8 +9,9 @@ import { IoCreateOutline } from "react-icons/io5";
 import CreateChatModal from "../ChatModal/ChatModal";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
+import { sortChatsByDate } from "../../helpers/sortChatsByDate ";
 const AsideBar = () => {
-  const [chats, setChats] = useHttp(fetchChats);
+  const [chats, setChats] = useHttp(fetchChats, null, sortChatsByDate);
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -23,7 +24,7 @@ const AsideBar = () => {
   const handleSeadch = async query => {
     try {
       const searchResults = await searchChats(query);
-      setChats(searchResults);
+      setChats(sortChatsByDate(searchResults));
     } catch (error) {
       console.error("Error searching chats:", error);
     }
@@ -32,21 +33,26 @@ const AsideBar = () => {
   const handleCreateChat = async newChatData => {
     try {
       const newChat = await createChat(newChatData);
-
-      setChats([...chats, newChat]);
+      setChats(sortChatsByDate([...chats, newChat]));
       closeModal();
     } catch (error) {
       console.error("Error creating chat:", error);
     }
   };
   const handleUpdateChat = ({ updatedChat }) => {
-    setChats(prevChats =>
-      prevChats.map(chat => (chat._id === updatedChat._id ? updatedChat : chat))
-    );
+    setChats(prevChats => {
+      const updatedChats = prevChats.map(chat =>
+        chat._id === updatedChat._id ? updatedChat : chat
+      );
+      return sortChatsByDate(updatedChats);
+    });
   };
 
   const handleDeleteChat = chatId => {
-    setChats(prevChats => prevChats.filter(chat => chat._id !== chatId));
+    setChats(prevChats => {
+      const updatedChats = prevChats.filter(chat => chat._id !== chatId);
+      return sortChatsByDate(updatedChats);
+    });
   };
   return (
     <aside className={s.aside_bar}>

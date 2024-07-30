@@ -13,7 +13,6 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 const ChatItem = ({ chat, onUpdate, onDelete }) => {
   const { _id, firstName, lastName, createdAt, messages } = chat;
   const location = useLocation();
-  // const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
   const [isEditOpen, setEditIsOpen] = useState(false);
   const [isDeleteOpen, setDeleteIsOpen] = useState(false);

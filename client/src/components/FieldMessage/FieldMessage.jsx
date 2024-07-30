@@ -23,8 +23,8 @@ const FieldMessage = ({ onSendMessage }) => {
   };
   return (
     <div className={s.field_message}>
-      <label>
-        <input
+      <div className={s.text_wrap}>
+        <textarea
           placeholder="Type your message"
           type="text"
           value={message}
@@ -34,7 +34,7 @@ const FieldMessage = ({ onSendMessage }) => {
         <button onClick={handleSubmit}>
           <IoMdSend />
         </button>
-      </label>
+      </div>
     </div>
   );
 };

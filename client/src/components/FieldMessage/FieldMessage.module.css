@@ -1,14 +1,19 @@
 .field_message {
   background-color: var(--dark-bgc);
   padding: 20px;
-  label {
+  .text_wrap {
     display: block;
     position: relative;
 
-    input {
+    textarea {
       border: 1px solid var(--dark-bgc);
       padding: 10px 20px;
+      padding-right: 50px;
       width: 100%;
+      resize: none;
+      overflow: auto;
+      height: 3em;
+      max-height: 20em;
       border-radius: 30px;
       transition: border-color var(--transition-pattern);
       &::placeholder {

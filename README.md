@@ -43,10 +43,8 @@ my-chat-app/
 ├── client/  
 │ ├── src/  
 │ │ ├── components/  
-│ │ │ ├── MainChat.jsx
 │ │ │ ├── ChatWindow.jsx
 │ │ │ ├── ChatList.jsx
-│ │ │ ├── NewChatForm.jsx
 │ │ │ └── ...  
 │ │ ├── assets/  
 │ │ ├── services/  

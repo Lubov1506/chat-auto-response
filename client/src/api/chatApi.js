@@ -10,12 +10,15 @@ export const getOneChat = async chatId => {
   const { data } = await axios.get(`chats/${chatId}`);
   return data.chat;
 };
-export const sendMessage = async (chatId, message) => {
+
+export const sendMessage = async ({ chatId, message }) => {
   const { data } = await axios.post(`chats/${chatId}/messages`, {
     text: message,
+    author: chatId,
   });
   return data;
 };
+
 export const createChat = async name => {
   const { firstName, lastName } = name;
   const { data } = await axios.post("chats", {

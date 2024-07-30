@@ -19,7 +19,7 @@
   gap: 10px;
   h1 {
     font-size: 1.4rem;
-    color: var(--color_blue);
+    color: var(--dark-msg);
   }
   z-index: 101;
 }
@@ -36,6 +36,6 @@
   transition: color var(--transition-pattern);
   .close_icon:hover,
   .close_icon:focus {
-    color: var(--color_blue);
+    color: var(--btn-hover);
   }
 }

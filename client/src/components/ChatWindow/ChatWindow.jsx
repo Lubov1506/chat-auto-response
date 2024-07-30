@@ -26,17 +26,9 @@ const ChatWindow = () => {
 
   const handleSendMessage = async message => {
     try {
-      await sendMessage(chatId, message);
+      await sendMessage({ chatId, message });
       let updatedChat = await getOneChat(chatId);
       setChat(updatedChat);
-      setTimeout(async () => {
-        try {
-          const autoResponse = await getOneChat(chatId);
-          setChat(autoResponse);
-        } catch (error) {
-          console.error("Error fetching auto response:", error);
-        }
-      }, 3000);
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -54,7 +46,15 @@ const ChatWindow = () => {
           {firstName} {lastName}
         </p>
       </header>
-      <main>{<MessageList messages={messages} />}</main>
+      <main>
+        {messages.length ? (
+          <MessageList messages={messages} currentUserId={chatId} />
+        ) : (
+          <p className={s.empty_chat}>
+            Send a message to start a communication!
+          </p>
+        )}
+      </main>
       <footer>
         <FieldMessage onSendMessage={handleSendMessage} />
       </footer>

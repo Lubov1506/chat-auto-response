@@ -24,7 +24,7 @@
     display: flex;
     gap: 10px;
     align-items: start;
-
+    max-width: 80%;
     h2 {
       font-weight: 500;
       font-size: 16px;
