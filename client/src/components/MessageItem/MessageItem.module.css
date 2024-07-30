@@ -7,11 +7,14 @@
     flex-shrink: 0;
   }
   .msg_text {
-    /* max-width: 80%; */
-    li {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .text_msg {
       color: var(--color-white);
-      padding: 5px 20px;
       background-color: var(--dark-msg);
+
+      padding: 5px 20px;
       border-radius: 20px;
     }
     .date {
@@ -23,4 +26,13 @@
 }
 .own_message {
   align-self: end;
+  display: flex;
+  justify-content: end;
+  .msg_text {
+    align-items: end;
+    .text_msg {
+      color: var(--primary-color);
+      background-color: var(--dark-bgc);
+    }
+  }
 }

@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route path="/" element={<ChatPage />}>
           <Route index element={<DefaultContent />} />
-          {/* може додати такий роут необхідно ще, */}
           <Route path="/chats" element={<DefaultContent />} />
           <Route path="chats/:chatId" element={<ChatWindow />} />
         </Route>

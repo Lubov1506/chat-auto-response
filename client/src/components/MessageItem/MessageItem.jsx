@@ -8,15 +8,17 @@ const MessageItem = ({ message, currentUserId }) => {
   const isOwnMessage = author === currentUserId;
   const date = formatDate(createdAt, "d/MM/yyyy, h:mmaaa");
   return (
-    <div className={clsx(s.message_item, { [s.own_message]: isOwnMessage })}>
-      <div className={s.logo}>
-        <UserLogo status={false} />
-      </div>
+    <li className={clsx(s.message_item, { [s.own_message]: isOwnMessage })}>
+      {!isOwnMessage && (
+        <div className={s.logo}>
+          <UserLogo status={false} />
+        </div>
+      )}
       <div className={s.msg_text}>
-        <li>{text}</li>
+        <p className={s.text_msg}> {text}</p>
         <span className={s.date}>{date}</span>
       </div>
-    </div>
+    </li>
   );
 };
 

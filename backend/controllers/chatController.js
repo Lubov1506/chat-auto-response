@@ -75,9 +75,7 @@ const deleteChat = async (req, res) => {
 
 const sendMessage = async (req, res) => {
   const { text, author } = req.body;
-  console.log(req.body);
   const { chatId: id } = req.params;
-  console.log(id);
 
   if (!text) {
     throw HttpError(400, "Text is required");

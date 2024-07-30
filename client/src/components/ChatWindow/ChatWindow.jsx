@@ -25,7 +25,6 @@ const ChatWindow = () => {
   }, [navigate]);
 
   const handleSendMessage = async message => {
-    console.log(message);
     try {
       await sendMessage({ chatId, message });
       let updatedChat = await getOneChat(chatId);
@@ -47,7 +46,15 @@ const ChatWindow = () => {
           {firstName} {lastName}
         </p>
       </header>
-      <main>{<MessageList messages={messages} currentUserId={chatId} />}</main>
+      <main>
+        {messages.length ? (
+          <MessageList messages={messages} currentUserId={chatId} />
+        ) : (
+          <p className={s.empty_chat}>
+            Send a message to start a communication!
+          </p>
+        )}
+      </main>
       <footer>
         <FieldMessage onSendMessage={handleSendMessage} />
       </footer>
