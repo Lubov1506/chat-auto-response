@@ -7,7 +7,7 @@
     flex-shrink: 0;
   }
   .msg_text {
-    max-width: 80%;
+    /* max-width: 80%; */
     li {
       color: var(--color-white);
       padding: 5px 20px;
@@ -20,4 +20,7 @@
       color: var(--dark-msg);
     }
   }
+}
+.own_message {
+  align-self: end;
 }

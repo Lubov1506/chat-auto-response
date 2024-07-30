@@ -25,18 +25,11 @@ const ChatWindow = () => {
   }, [navigate]);
 
   const handleSendMessage = async message => {
+    console.log(message);
     try {
-      await sendMessage(chatId, message);
+      await sendMessage({ chatId, message });
       let updatedChat = await getOneChat(chatId);
       setChat(updatedChat);
-      setTimeout(async () => {
-        try {
-          const autoResponse = await getOneChat(chatId);
-          setChat(autoResponse);
-        } catch (error) {
-          console.error("Error fetching auto response:", error);
-        }
-      }, 3000);
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -54,7 +47,7 @@ const ChatWindow = () => {
           {firstName} {lastName}
         </p>
       </header>
-      <main>{<MessageList messages={messages} />}</main>
+      <main>{<MessageList messages={messages} currentUserId={chatId} />}</main>
       <footer>
         <FieldMessage onSendMessage={handleSendMessage} />
       </footer>

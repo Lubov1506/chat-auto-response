@@ -26,7 +26,8 @@ export const getQuote = async () => {
       throw new Error("Failed to fetch quote");
     }
     const quoteData = await response.json();
-    return quoteData.content;
+    const data = { id: quoteData._id, quote: quoteData.content };
+    return data;
   } catch (err) {
     console.error("Error fetching quote:", err);
     throw err;

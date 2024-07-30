@@ -74,8 +74,10 @@ const deleteChat = async (req, res) => {
 };
 
 const sendMessage = async (req, res) => {
-  const { text } = req.body;
+  const { text, author } = req.body;
+  console.log(req.body);
   const { chatId: id } = req.params;
+  console.log(id);
 
   if (!text) {
     throw HttpError(400, "Text is required");
@@ -85,7 +87,7 @@ const sendMessage = async (req, res) => {
   if (!chat) {
     throw HttpError(404, "Chat not found");
   }
-  const message = { text };
+  const message = { text, author };
 
   chat.messages.push(message);
 
@@ -94,8 +96,8 @@ const sendMessage = async (req, res) => {
 
   setTimeout(async () => {
     try {
-      const autoResponseText = await chatServices.getQuote();
-      const autoResponse = { text: autoResponseText };
+      const { id, quote } = await chatServices.getQuote();
+      const autoResponse = { text: quote, author: id };
       chat.messages.push(autoResponse);
       await chatServices.saveChat(chat);
     } catch (err) {
