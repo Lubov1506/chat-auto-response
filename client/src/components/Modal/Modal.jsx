@@ -24,11 +24,10 @@ const Modal = ({ children, title = "Default modal", onClose }) => {
   return (
     <div className={s.wrapper} onClick={handleBackDropClick}>
       <div className={s.content}>
-        <>
-          <h1>{title}</h1>
-        </>
+        <h1>{title}</h1>
+
         <button className={s.closeBtn} onClick={onClose}>
-          <IoClose />
+          <IoClose className={s.close_icon} />
         </button>
         {children}
       </div>

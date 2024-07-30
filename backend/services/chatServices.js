@@ -13,8 +13,8 @@ export const createChat = async data => {
   const chat = new Chat(data);
   return chat.save();
 };
-export const updateChat = async (id, data) => {
-  return Chat.findOneAndUpdate(id, data, { new: true });
+export const updateChat = async ({ _id, data }) => {
+  return Chat.findOneAndUpdate({ _id }, data, { new: true });
 };
 export const removeChat = async id => {
   return Chat.findOneAndDelete(id);
@@ -26,7 +26,6 @@ export const getQuote = async () => {
       throw new Error("Failed to fetch quote");
     }
     const quoteData = await response.json();
-    console.log(quoteData);
     return quoteData.content;
   } catch (err) {
     console.error("Error fetching quote:", err);

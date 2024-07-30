@@ -1,13 +1,17 @@
-.create_btn {
-  padding: 5px 10px;
+.custom_btn {
+  z-index: 10;
+  padding: 5px;
   color: var(--color_blue);
   font-weight: 700;
+  display: flex;
+  justify-content: center;
   width: fit-content;
   align-items: center;
   align-self: center;
   border-radius: 10px;
+
   &hover,
   &focus {
-    -color: rgb(1, 107, 107);
+    color: rgb(1, 107, 107);
   }
 }

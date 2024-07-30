@@ -1,3 +1,12 @@
+.chat_list_item {
+  position: relative;
+}
+.chat_list_item:hover .date {
+  display: none;
+}
+.chat_list_item:hover .options {
+  display: flex;
+}
 .chat_item {
   padding: 5px 10px;
   display: flex;
@@ -9,6 +18,7 @@
   .date {
     display: flex;
     flex-shrink: 0;
+    transition: all var(--transition-pattern);
   }
   .left {
     display: flex;
@@ -24,4 +34,14 @@
       overflow-y: hidden;
     }
   }
+}
+.options {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1%;
+  gap: 5px;
+  align-items: center;
+  transition: all var(--transition-pattern);
 }
