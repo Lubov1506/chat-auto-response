@@ -3,3 +3,5 @@ node_modules/
 .idea
 .vscode
 .DS_Store
+client/node_modules/
+client/build/
