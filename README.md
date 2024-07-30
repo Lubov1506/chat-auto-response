@@ -1,5 +1,3 @@
-Звісно! Ось приклад README файлу для вашого проекту:
-
 ```markdown
 # Chat Application with Auto-Response
 
