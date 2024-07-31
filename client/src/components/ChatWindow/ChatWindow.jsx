@@ -10,19 +10,27 @@ import MessageList from "../MessageList/MessageList";
 const ChatWindow = () => {
   const { chatId } = useParams();
   const navigate = useNavigate();
-  const [chat, setChat, loading] = useHttp(getOneChat, chatId);
+
+  const [chat, setChat, loading] = useHttp(
+    chatId ? getOneChat : () => Promise.resolve(null),
+    chatId
+  );
 
   useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === "Escape") {
-        navigate("/");
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [navigate]);
+    if (!chatId) {
+      navigate("/");
+    } else {
+      const handleKeyDown = event => {
+        if (event.key === "Escape") {
+          navigate("/");
+        }
+      };
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [chatId, navigate]);
 
   const handleSendMessage = async message => {
     try {
@@ -35,6 +43,7 @@ const ChatWindow = () => {
   };
 
   if (loading) return <p>Loading...</p>;
+  if (!chatId) return <p>No chat ID provided</p>;
   if (!chat) return <p>No chat found</p>;
 
   const { firstName, lastName, messages } = chat;
